@@ -1,0 +1,90 @@
+import { useState } from "react";
+
+export default function FormComponent() {
+  const [formData, setFormData] = useState({
+    roll: "",
+    name: "",
+    gender: "",
+    city: "",
+    phone: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Data Submitted:", formData);
+    alert(`Form Submitted: ${JSON.stringify(formData, null, 2)}`);
+  };
+
+  return (
+    <div>
+      <h2>Student Form</h2>
+      <form onSubmit={handleSubmit}>
+        {/* Roll */}
+        <div>
+          <label>Roll: </label>
+          <input
+            type="text"
+            name="roll"
+            value={formData.roll}
+            onChange={handleChange}
+            placeholder="Enter Roll"
+          />
+        </div>
+
+        {/* Name */}
+        <div>
+          <label>Name: </label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Enter Name"
+          />
+        </div>
+
+        {/* Gender */}
+        <div>
+          <label>Gender: </label>
+          <select name="gender" value={formData.gender} onChange={handleChange}>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        {/* City */}
+        <div>
+          <label>City: </label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            placeholder="Enter City"
+          />
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label>Phone: </label>
+          <input
+            type="text"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Enter Phone"
+          />
+        </div>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
